@@ -36,7 +36,7 @@ class Movie extends Component {
 
   _loadFilms = () => {
     const { films } = this.state;
-    const { searchText } = this.props;
+    const { searchText, genreSelected } = this.props;
 
     if (this.firstLoad) {
       this.setState({
@@ -46,7 +46,7 @@ class Movie extends Component {
     }
 
     if (!searchText.length) {
-      getPopularMovies(this.page+1).then(data => {
+      getPopularMovies(this.page+1, genreSelected).then(data => {
         this.page = data.page
         this.totalPages = data.total_pages
         this.setState({
@@ -55,7 +55,7 @@ class Movie extends Component {
         })
       })
     } else {
-      getFilmsFromApiWithSearchedText(searchText, this.page+1).then(data => {
+      getFilmsFromApiWithSearchedText(searchText, this.page+1, genreSelected).then(data => {
         this.page = data.page
         this.totalPages = data.total_pages
         this.setState({
@@ -71,7 +71,7 @@ class Movie extends Component {
   }
 
   componentDidUpdate = async (nextProps, nextState) => {
-    if (this.props.searchText !== nextProps.searchText) {   
+    if (this.props.searchText !== nextProps.searchText || this.props.genreSelected !== nextProps.genreSelected) {   
       this.firstLoad= true;
       this.page = 0
       this.totalPages = 0
@@ -107,7 +107,8 @@ class Movie extends Component {
 
 const mapStateToProps = state => {
   return {
-    searchText: state.searchText.searchText
+    searchText: state.searchText.searchText,
+    genreSelected: state.genreSelected.selectedId
   }
 }
 
