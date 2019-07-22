@@ -1,8 +1,11 @@
-import { createStackNavigator, createAppContainer  } from 'react-navigation';
+import React from 'react';
+import { createStackNavigator, createAppContainer, createBottomTabNavigator  } from 'react-navigation';
+import { Image } from './NavigationStyles';
 import Home from '../Components/Home';
 import FilmDetails from '../Components/FilmDetails'
+import Favorites from '../Components/Favorites'
 
-const Navigator = createStackNavigator({
+const SearchStackNavigator = createStackNavigator({
   Home: {
     screen: Home,
     navigationOptions: {
@@ -14,4 +17,37 @@ const Navigator = createStackNavigator({
   }
 })
 
-export default createAppContainer(Navigator)
+const TabNavigator = createBottomTabNavigator({
+  search: {
+    screen: SearchStackNavigator,
+    navigationOptions: {
+      tabBarIcon: () => {
+        return <Image
+          source={require('../assets/magnifier.png')} />
+      }
+    }
+  },
+  Favorites: {
+    screen: Favorites,
+    navigationOptions: {
+      tabBarIcon: () => {
+        return <Image
+          source={require('../assets/favorite.png')} />
+      }
+    }
+  }
+},
+{
+  tabBarOptions: {
+    activeBackgroundColor: '#13333f',
+    inactiveBackgroundColor: '#081C24',
+    showLabel: false,
+    showIcon: true,
+    style:{
+      backgroundColor: '##081C24'
+    }
+  }
+});
+
+
+export default createAppContainer(TabNavigator)
