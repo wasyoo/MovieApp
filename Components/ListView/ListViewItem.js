@@ -1,13 +1,13 @@
 import React from 'react';
 import moment from 'moment';
 import { withNavigation } from 'react-navigation';
-import { MovieItemView, MovieItemTitle, Cover, Image } from './MovieStyles';
-import MovieRating from '../../Core/Rating/MovieRating';
-import { getImageFromApi } from '../../../services/TMDBApi';
+import { MovieItemView, MovieItemTitle, Cover, Image } from './ListViewStyles';
+import MovieRating from '../Core/Rating/MovieRating';
+import { getImageFromApi } from '../../services/TMDBApi';
 
-function MovieItem({movie, navigation}) {
+function ListViewItem({movie, navigation}) {
   return (
-    <MovieItemView 
+    <MovieItemView
       empty={movie.empty && movie.empty}
       onPress={() => navigation.navigate("FilmDetails", { idFilm: movie.id})}  
     >
@@ -21,4 +21,4 @@ function MovieItem({movie, navigation}) {
   )
 }
 
-export default withNavigation(MovieItem);
+export default withNavigation(ListViewItem);

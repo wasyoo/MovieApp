@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
-import styled from 'styled-components';
 import { connect } from "react-redux";
-import MovieItem from './MovieItem';
 import { getFilmsFromApiWithSearchedText, getPopularMovies } from '../../../services/TMDBApi';
-import { ActivityIndicator } from 'react-native'
-
-const ListView = styled.FlatList`
-  padding: 10px;
-`;
+import { ActivityIndicator } from 'react-native';
+import ListViewMovies from '../../ListView/ListViewMovies';
 
 class Movie extends Component {
   constructor(props) {
@@ -87,14 +81,10 @@ class Movie extends Component {
     return (
       isLoading ? (
         <ActivityIndicator size="large" color="#fff" />
-        ) : (
-        <ListView
-          data={this.FormatData(films, 2)}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({item}) => <MovieItem movie={item}/>}
-          numColumns={2}
-          onEndReachedThreshold={0.8}
-          onEndReached={(info) => {
+      ) : (
+        <ListViewMovies
+          data={films}
+          _loadFilms={() => {
             if (this.page < this.totalPages) {
               this._loadFilms()
             }
