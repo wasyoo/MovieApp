@@ -1,15 +1,29 @@
-import React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import React from 'react';
+import { connect } from "react-redux";
+import { FavoriteContainer } from './FavoriteStyles';
+import ListViewMovies from '../ListView'
 
 class Favorites extends React.Component {
 
   render() {
+    const { favoritesFilm } = this.props;
     return (
-      <Text>Mes Favoris</Text>
+      <FavoriteContainer>
+        <ListViewMovies
+          _loadFilms={() => false}
+          data={favoritesFilm}
+        />
+      </FavoriteContainer>
     )
   }
 }
 
-const styles = StyleSheet.create({})
+const mapStateToProps = state => {
+  return {
+    favoritesFilm: state.favorite.favoritesFilm,
+  }
+}
 
-export default Favorites
+export default connect(
+  mapStateToProps,
+)(Favorites);

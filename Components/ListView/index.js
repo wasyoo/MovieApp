@@ -1,1 +1,1 @@
-export { default } from './ListView';
+export { default } from './ListViewMovies';

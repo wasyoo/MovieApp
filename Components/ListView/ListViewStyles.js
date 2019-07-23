@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const ListView = styled.FlatList`
+  padding: 10px;
+`;
+
 export const MovieItemView = styled.TouchableOpacity`
   margin: 5px;
   border: 1px solid #fff;
@@ -44,4 +48,12 @@ export const MovieTitleContent = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+`;
+
+export const EmptyDataText = styled.Text`
+  font-size: 30px;
+  color: #fff;
+  margin-top: 100px;
+  text-align: center;
+  width: 100%;
 `;

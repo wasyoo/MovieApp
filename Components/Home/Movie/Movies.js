@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { getFilmsFromApiWithSearchedText, getPopularMovies } from '../../../services/TMDBApi';
 import { ActivityIndicator } from 'react-native';
-import ListViewMovies from '../../ListView/ListViewMovies';
+import ListViewMovies from '../../ListView';
 
 class Movie extends Component {
   constructor(props) {
@@ -14,18 +14,6 @@ class Movie extends Component {
       films: [],
       isLoading: false,
     };
-  }
-
-  FormatData = (data, numColumns) => {
-    const numberOfFullRows = Math.floor(data.length / numColumns)
-    let numberOfElementLastRow = data.length - (numberOfFullRows * numColumns)
-    while (numberOfElementLastRow !== numColumns && numberOfElementLastRow !== 0) {
-      data.push({
-        title: numberOfElementLastRow, 
-        empty:true})
-      numberOfElementLastRow += 1  
-    }
-    return data;
   }
 
   _loadFilms = () => {
@@ -80,7 +68,7 @@ class Movie extends Component {
     const { films, isLoading } = this.state;
     return (
       isLoading ? (
-        <ActivityIndicator size="large" color="#fff" />
+        <ActivityIndicator style={{marginTop: 100}} size="large" color="#fff" />
       ) : (
         <ListViewMovies
           data={films}
