@@ -30,4 +30,14 @@ export const Image = styled.Image`
   height: 169px;
 `;
 
+export const FavoriteIcon = styled.Image`
+  width:  40px;
+  height: 40px;
+`;
+
+export const FavTouchableOpacity = styled.TouchableOpacity`
+  position: absolute;
+  top: 20px;
+  left: 10px;
+`;
 
