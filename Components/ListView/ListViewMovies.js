@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from "react-redux";
 import { FlatList } from 'react-native';
 import styled from 'styled-components';
 import ListViewItem from './ListViewItem';
@@ -19,15 +20,28 @@ const FormatData = (data, numColumns) => {
   return data;
 }
 
-const ListViewMovies = ({data, _loadFilms}) => (
-  <ListView
+const ListViewMovies = ({data, _loadFilms, favoritesFilm}) =>{
+  return (
+    <ListView
     data={FormatData(data, 2)}
     keyExtractor={(item) => String(item.id)}
-    renderItem={({item}) => <ListViewItem movie={item}/>}
-    numColumns={2}
-    onEndReachedThreshold={0.8}
-    onEndReached={()=>_loadFilms()}
-  />
-)
+    renderItem={({item}) => <ListViewItem
+    movie={item}
+    isFilmFavorite={(favoritesFilm.findIndex(film => film.id === item.id) !== -1) ? true : false}
+    />}
+      numColumns={2}
+      onEndReachedThreshold={0.8}
+      onEndReached={()=>_loadFilms()}
+    />
+  )
+}
 
-export default ListViewMovies;
+const mapStateToProps = state => {
+  return {
+    favoritesFilm: state.favorite.favoritesFilm,
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(ListViewMovies);

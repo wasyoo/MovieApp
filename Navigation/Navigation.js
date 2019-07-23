@@ -32,7 +32,7 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarIcon: () => {
         return <Image
-          source={require('../assets/favorite.png')} />
+          source={require('../assets/favoriteIconTab.png')} />
       }
     }
   }

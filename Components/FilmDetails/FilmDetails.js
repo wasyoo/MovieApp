@@ -36,14 +36,12 @@ class FilmDetails extends Component {
 
   _displayFavoriteImage() {
     const { favoritesFilm } = this.props;
-    console.log("TCL: FilmDetails -> _displayFavoriteImage -> favoritesFilm", favoritesFilm)
     var sourceImage = require('../../assets/favorite.png')
     if (favoritesFilm.findIndex(item => item.id === this.state.film.id) !== -1) {
       sourceImage = require('../../assets/favorite-full.png')
     }
     return (
       <FavoriteIcon
-        style={{width: 40, heigth: 40}}
         source={sourceImage}
       />
     )

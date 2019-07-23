@@ -8,6 +8,7 @@ export const MovieItemView = styled.TouchableOpacity`
   width: 100%;
 	height: 230px;
   overflow: hidden;
+  position: relative;
   ${({empty}) => empty && 'opacity: 0'}
 `;
 
@@ -25,11 +26,22 @@ export const MovieItemTitle = styled.Text`
   font-weight: 600;
 `;
 
+export const FavoriteIcon = styled.Image`
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+`;
+
 export const Image = styled.Image`
   width: 100%;
   height: 100%
 `;
 
-
-
-
+export const MovieTitleContent = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
