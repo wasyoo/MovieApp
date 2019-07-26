@@ -9,6 +9,7 @@ function ListViewItem({movie, navigation, isFilmFavorite}) {
   return (
     <MovieItemView
       empty={movie.empty && movie.empty}
+      disabled={movie.empty && movie.empty}
       onPress={() => navigation.navigate("FilmDetails", { idFilm: movie.id})}  
     >
       <Cover>
